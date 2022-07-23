@@ -31,11 +31,11 @@ export default function Tags() {
   function handleSave (){
     if (tag === '') return;
 
-    setId(id +1);
     // const id = (tags.length>0) ? tags[tags.length-1].id + 1: 1;
     const color = COLORS[id%COLORS.length];
     setTags([...tags, {id, name: tag + " " + id, color }]);
     setTag('');
+    setId(id +1);
   }
 
   function handleChange(event){
