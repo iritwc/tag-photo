@@ -13,16 +13,18 @@ function getPhotos() {
 function App() {
 
   const [photos, setPhotos] = useState([]);
+  const [tags, setTags] = useState([]);
 
-  // const [tags, setTags] = useState([]);
-  //
-  // handleDeleteTag(item) {
-  //
-  // }
-  //
-  // handleAddTag(item) {
-  //
-  // }
+  function handleDeleteTag(item) {
+    let index = tags.indexOf(item);
+    // console.log(item, index);
+    setTags([...tags.slice(0, index), ...tags.slice(index+1)]);
+  }
+
+  function handleAddTag(item) {
+    setTags([...tags,item]);
+  }
+
   useEffect(() => {
     try {
       const fetchPhotos = async () => {
@@ -40,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <Tags />
+      <Tags tags={tags} onAdd={handleAddTag} onDelete={handleDeleteTag} />
       <Photos photos={photos} />
       {/*<header className="App-header">*/}
         {/**/}

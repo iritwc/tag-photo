@@ -22,9 +22,9 @@ function TagsList({items, handleClick}) {
   );
 }
 
-export default function Tags() {
+export default function Tags({tags, onAdd, onDelete}) {
 
-  const [tags, setTags] = useState([]);
+  // const [tags, setTags] = useState([]);
   const [tag, setTag] = useState('');
   const [id, setId] = useState(0);
 
@@ -32,7 +32,9 @@ export default function Tags() {
     if (tag === '') return;
 
     const color = COLORS[id%COLORS.length];
-    setTags([...tags, {id, name: tag + " " + id, color }]);
+    const item =  {id, name: tag + " " + id, color };
+    onAdd(item);
+    // setTags([...tags,item]);
     setTag('');
     setId(id +1);
   }
@@ -43,9 +45,10 @@ export default function Tags() {
 
   function handleDelete(event, item) {
 
-    let index = tags.indexOf(item);
-    // console.log(item, index);
-    setTags([...tags.slice(0, index), ...tags.slice(index+1)]);
+    onDelete(item);
+    // let index = tags.indexOf(item);
+    // // console.log(item, index);
+    // setTags([...tags.slice(0, index), ...tags.slice(index+1)]);
   }
 
 
