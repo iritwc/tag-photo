@@ -1,0 +1,19 @@
+.photos {
+    /*display: grid;*/
+    /*grid-template-rows: repeat(2, 1fr);*/
+    /*gap: 1em;*/
+    flex: auto;
+}
+
+.photos ul {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    row-gap: 1em;
+}
+
+.photos .tagged img, .photos .untagged img {
+
+    width: 80px;
+    height: 80px;
+}

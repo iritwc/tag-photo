@@ -28,7 +28,7 @@ export default function Tags() {
   const [tag, setTag] = useState('');
   const [id, setId] = useState(0);
 
-  function handleSave (){
+  function handleSave () {
     if (tag === '') return;
 
     // const id = (tags.length>0) ? tags[tags.length-1].id + 1: 1;
@@ -38,7 +38,7 @@ export default function Tags() {
     setId(id +1);
   }
 
-  function handleChange(event){
+  function handleChange(event) {
     setTag(event.target.value);
   }
 
@@ -50,9 +50,9 @@ export default function Tags() {
   }
 
 
-  return (<div className={'tags'}>
+  return (<div className='tags'>
     <input type="text" onChange={handleChange} value={tag} />
     <button onClick={handleSave}>Save</button>
-    <TagsList items={tags} handleClick={handleDelete}/>
+    <TagsList items={tags} handleClick={handleDelete} />
   </div>);
 }
