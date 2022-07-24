@@ -14,6 +14,15 @@ function App() {
 
   const [photos, setPhotos] = useState([]);
 
+  // const [tags, setTags] = useState([]);
+  //
+  // handleDeleteTag(item) {
+  //
+  // }
+  //
+  // handleAddTag(item) {
+  //
+  // }
   useEffect(() => {
     try {
       const fetchPhotos = async () => {
