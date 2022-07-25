@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <Tags tags={tags} onAdd={handleAddTag} onDelete={handleDeleteTag} />
-      <Photos photos={photos} />
+      {/*<Photos photos={photos} />*/}
       {/*<header className="App-header">*/}
         {/**/}
         {/*<img src={logo} className="App-logo" alt="logo" />*/}

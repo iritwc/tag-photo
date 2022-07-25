@@ -3,6 +3,11 @@ div.tags {
     flex-direction: column;
     align-items: center;
     row-gap: 1em;
+    width: 300px;
+}
+
+.tags ul li {
+    min-width: 120px;
 }
 
 div.tags > input {
@@ -22,7 +27,7 @@ div.tags > button {
     display: flex;
     justify-content: space-between;
     /*height: 1.5em;*/
-    padding: 5px;
+    padding: 10px;
     /*overflow: hidden;*/
 }
 
@@ -36,24 +41,4 @@ div.tags > button {
     height: 16px;
     border: none;
     cursor: pointer;
-}
-
-.red {
-    background-color: #FF0100;
-}
-
-.blue {
-    background-color: #4986E8;
-}
-
-.green {
-    background-color: #02FF01;
-}
-
-.yellow {
-    background-color: #F8FA36;
-}
-
-.gray {
-    background-color: #DDEAEE;
 }

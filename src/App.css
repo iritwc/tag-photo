@@ -39,9 +39,28 @@
   }
 }
 
-
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.red {
+  background-color: #FF0100;
+}
+
+.blue {
+  background-color: #4986E8;
+}
+
+.green {
+  background-color: #02FF01;
+}
+
+.yellow {
+  background-color: #F8FA36;
+}
+
+.gray {
+  background-color: #DDEAEE;
 }

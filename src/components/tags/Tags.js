@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Tags.css';
+import TagSelect from './TagSelect.js';
 
 // const MOCK_TAGS = [{id: 1, name: 'Tag 1', color: 'red'},
 //   {id: 2, name: 'Tag 2', color: 'blue'},
 //   {id: 3, name: 'Tag 3', color: 'yellow'},
 //   {id: 4, name: 'Tag 4', color: 'green'},
 //   {id: 5, name: 'Tag 5', color: 'gray'},];
-
 
 const COLORS = ['red', 'green', 'blue', 'yellow' , 'gray'];
 
@@ -51,10 +51,17 @@ export default function Tags({tags, onAdd, onDelete}) {
     // setTags([...tags.slice(0, index), ...tags.slice(index+1)]);
   }
 
+  function handleSelect(items){
+    console.log("Selected items", items);
+  }
 
-  return (<div className='tags'>
-    <input type="text" onChange={handleChange} value={tag} />
-    <button onClick={handleSave}>Save</button>
-    <TagsList items={tags} handleClick={handleDelete} />
+
+  return (
+
+    <div className='tags'>
+      <TagSelect tags={tags} onApply={handleSelect} />
+      <input type="text" onChange={handleChange} value={tag} />
+      <button onClick={handleSave}>Save</button>
+      <TagsList items={tags} handleClick={handleDelete} />
   </div>);
 }
