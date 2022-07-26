@@ -1,21 +1,9 @@
-div.tags {
+.tags {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 1em;
     width: 300px;
-}
-
-.tags ul li {
-    min-width: 120px;
-}
-
-div.tags > input {
-    height: 23px;
-}
-
-div.tags > button {
-    width: 120px;
 }
 
 .tags ul {
@@ -29,6 +17,7 @@ div.tags > button {
     /*height: 1.5em;*/
     padding: 10px;
     /*overflow: hidden;*/
+    min-width: 120px;
 }
 
 .tags ul li div {
@@ -41,4 +30,12 @@ div.tags > button {
     height: 16px;
     border: none;
     cursor: pointer;
+}
+
+.tags > input {
+    height: 23px;
+}
+
+.tags > button {
+    width: 120px;
 }

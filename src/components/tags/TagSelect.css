@@ -3,6 +3,7 @@
     flex-direction: column;
     row-gap: 3px;
     width: 123px;
+    position: absolute;
 }
 
 .tags-select-wrapper select {
@@ -13,4 +14,8 @@
 .tags-select-wrapper select option {
     margin: 3px 0;
     padding: 7px;
+}
+
+.tags-select-wrapper.hide {
+    display: none;
 }
