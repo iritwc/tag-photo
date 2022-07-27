@@ -5,11 +5,16 @@
     flex: auto;
 }
 
+.photos section {
+    margin: 1em auto;
+}
+
 .photos .untagged ul {
     display: flex;
     flex-wrap: wrap;
     column-gap: 1em;
     row-gap: 1em;
+    margin: 1em auto;
 }
 
 .photos .tagged img, .photos .untagged img {
@@ -33,4 +38,6 @@
     column-gap: 1em;
     flex-wrap: wrap;
 }
+
+
 
