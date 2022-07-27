@@ -19,3 +19,7 @@
 .tags-select-wrapper.hide {
     display: none;
 }
+
+.tags-select-wrapper button {
+    height: 29px;
+}
