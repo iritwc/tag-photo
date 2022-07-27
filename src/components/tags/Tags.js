@@ -24,7 +24,7 @@ export default function Tags({tags, onAdd, onDelete, }) {
     if (tag === '') return;
 
     const color = COLORS[id%COLORS.length];
-    const item =  {id, name: tag + " " + id, color };
+    const item =  {id, name: tag, color };
     onAdd(item);
     setTag('');
     setId(id +1);
