@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Photos.css';
 
 function groupBy(array, callbackFn, callbackItem=(item)=>item) {
-  // groups: map{tag1:[], tag2:[], ..., tagN:[]}
+
   let groups = new Map();
   for (const item of array) {
     let groupKey = callbackFn(item);
@@ -33,14 +33,14 @@ function PhotosByTag({value, key}) {
       <img src={item.download_url} alt={item.author} ></img>
     </li>
   );
-  return (<div key={"div" + key.id} className={"tag-group"}><div className={key.color+ " title"}>{key.name}</div><ul>{groupItems}</ul></div>); //key={"ul" + key}
+  return (<div key={"div" + key.id} className={"tag-group"}><div className={key.color+ " title"}>{key.name}</div><ul>{groupItems}</ul></div>);
+
 }
 
 function PhotosByTags({groups}) {
 
   let pbt = [];
   for (let [key, value] of groups) {
-    // console.log(key, group);
     pbt.push (PhotosByTag({value, key}));
   }
   return (<div>{pbt.map(pt => pt)}</div>);
@@ -54,13 +54,10 @@ export default function Photos({photos, tagsToPhotos, onTagging}) {
   useEffect(() => {
     let groups = groupBy(photos, (photo) => photo.tagged.toString());
     setUnTagged( groups.get('false') || []);
-    // setTagged( groups.get('true') || []);
-    console.log("photos useeffect", groups.get('false'));
   }, [photos]);
 
   useEffect(() => {
     let groupsByTags = groupBy(tagsToPhotos, (ttp) => ttp.tag, (item) => item.photo);
-    // console.log("groups by tag", groupsByTags, "tagstophotos" ,tagsToPhotos);
     setTagged(groupsByTags);
   }, [tagsToPhotos]);
 

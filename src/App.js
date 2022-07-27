@@ -1,5 +1,4 @@
 import React, {useEffect, useState } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import Tags from './components/tags/Tags.js';
 import Photos from './components/photos/Photos.js';
@@ -15,6 +14,7 @@ function App() {
   const [photos, setPhotos] = useState([]);
   const [tags, setTags] = useState([]);
   const [tagsToPhotos, setTagsToPhotos] = useState([]);
+
   const [selectPosition, setSelectPosition] = useState(null);
   const [selectPhoto, setSelectPhoto] = useState(null);
 
@@ -32,20 +32,14 @@ function App() {
       }
     }
 
-    console.log("untagged photos", untaggedPhotos);
-
     if (untaggedPhotos.length > 0) {
       let newPhotos = photos.map(photo => {
         let p = untaggedPhotos.find(p => p.id === photo.id);
-        console.log("p=", p);
-        if (p) return p;
-        else return photo;
+        return (p) ?  p : photo;
       });
 
-      console.log(untaggedPhotos, newPhotos);
       setPhotos(newPhotos);
     }
-
 
     setTagsToPhotos(newttp);
   }
@@ -55,7 +49,6 @@ function App() {
   }
 
   function handleAttachTags(items){
-    // console.log("Attaching tags ",  items, selectPhoto);
 
     const photoId = selectPhoto.id;
     let index = photos.findIndex(p => p.id === photoId);
@@ -64,12 +57,10 @@ function App() {
       photo.tagged = true;
       setPhotos([...photos.slice(0, index), photo, ...photos.slice(index + 1)]);
 
-      let ttp = items.map(tagId => {
-        let tag = tags.find(t => t.id === parseInt(tagId));
-        // console.log(tag, tagId,tags);
+      const ttp = items.map(tagId => {
+        const tag = tags.find(t => t.id === parseInt(tagId));
         return {photo, tag};
       });
-      // console.log(tagsToPhotos, ttp);
 
       setTagsToPhotos([...tagsToPhotos, ...ttp]);
     }
@@ -78,7 +69,7 @@ function App() {
   }
 
   function handleTagging(e, item) {
-    let {offsetTop, offsetLeft, offsetHeight, offsetWidth} = e.target;
+    const {offsetTop, offsetLeft, offsetHeight, offsetWidth} = e.target;
 
     if (selectPosition == null) {
       setSelectPosition({ offsetTop, offsetLeft, offsetHeight, offsetWidth });
@@ -107,23 +98,6 @@ function App() {
       <TagSelect position={selectPosition} tags={tags} onApply={handleAttachTags} />
       <Tags tags={tags} onAdd={handleAddTag} onDelete={handleDeleteTag} />
       <Photos photos={photos} tagsToPhotos={tagsToPhotos} onTagging={handleTagging} />
-
-
-      {/*<header className="App-header">*/}
-        {/**/}
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        {/*<p>*/}
-          {/*Edit <code>src/App.js</code> and save to reload.*/}
-        {/*</p>*/}
-        {/*<a*/}
-          {/*className="App-link"*/}
-          {/*href="https://reactjs.org"*/}
-          {/*target="_blank"*/}
-          {/*rel="noopener noreferrer"*/}
-        {/*>*/}
-          {/*Learn React*/}
-        {/*</a>*/}
-      {/*</header>*/}
     </div>
   );
 }

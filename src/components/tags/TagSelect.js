@@ -13,7 +13,6 @@ export default function TagSelect({tags, onApply, position=null}) {
   function handleSelect(event) {
     const value = event.target.value;
     let index = selects.findIndex(s => s === value);
-    // console.log(index, value, selects);
     if (index === -1) { // not exist then add
       setSelects([...selects, value]);
     } else { // exist then remove
@@ -29,8 +28,6 @@ export default function TagSelect({tags, onApply, position=null}) {
   }
 
   useEffect(() => {
-    // console.log("useEffect", selectTag.current.style, position);
-
     if (position == null) {
       selectTag.current.top = 0;
       selectTag.current.left = 0;

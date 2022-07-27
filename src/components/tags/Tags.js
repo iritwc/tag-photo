@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
 import './Tags.css';
-// import TagSelect from './TagSelect.js';
-
-// const MOCK_TAGS = [{id: 1, name: 'Tag 1', color: 'red'},
-//   {id: 2, name: 'Tag 2', color: 'blue'},
-//   {id: 3, name: 'Tag 3', color: 'yellow'},
-//   {id: 4, name: 'Tag 4', color: 'green'},
-//   {id: 5, name: 'Tag 5', color: 'gray'},];
-const ATTACH_TAG = 0;
-const ADD_TAG = 1;
 
 const COLORS = ['red', 'green', 'blue', 'yellow' , 'gray'];
 
@@ -26,7 +17,6 @@ function TagsList({items, handleClick}) {
 
 export default function Tags({tags, onAdd, onDelete, }) {
 
-  // const [tags, setTags] = useState([]);
   const [tag, setTag] = useState('');
   const [id, setId] = useState(0);
 
@@ -36,7 +26,6 @@ export default function Tags({tags, onAdd, onDelete, }) {
     const color = COLORS[id%COLORS.length];
     const item =  {id, name: tag + " " + id, color };
     onAdd(item);
-    // setTags([...tags,item]);
     setTag('');
     setId(id +1);
   }
@@ -46,17 +35,8 @@ export default function Tags({tags, onAdd, onDelete, }) {
   }
 
   function handleDelete(event, item) {
-
     onDelete(item);
-    // let index = tags.indexOf(item);
-    // // console.log(item, index);
-    // setTags([...tags.slice(0, index), ...tags.slice(index+1)]);
   }
-
-  // function handleSelect(items){
-  //   console.log("Selected items", items);
-  // }
-
 
   return (
 
