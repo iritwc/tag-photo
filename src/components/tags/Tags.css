@@ -3,21 +3,19 @@
     flex-direction: column;
     align-items: center;
     row-gap: 1em;
-    width: 300px;
 }
 
 .tags ul {
-    max-width: 200px;
+    max-width: 147px;
 }
 
 .tags ul li {
-    margin: 1em;
+    margin: 1em 0;
     display: flex;
     justify-content: space-between;
-    /*height: 1.5em;*/
     padding: 10px;
     /*overflow: hidden;*/
-    min-width: 120px;
+    min-width: 127px;
 }
 
 .tags ul li div {
@@ -38,4 +36,5 @@
 
 .tags > button {
     width: 120px;
+    height: 29px;
 }
