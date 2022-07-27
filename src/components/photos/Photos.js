@@ -33,7 +33,7 @@ function PhotosByTag({value, key}) {
       <img src={item.download_url} alt={item.author} ></img>
     </li>
   );
-  return (<div key={"div" + key.id}><div className={key.color+ " title"}>{key.name}</div><ul>{groupItems}</ul></div>); //key={"ul" + key}
+  return (<div key={"div" + key.id} className={"tag-group"}><div className={key.color+ " title"}>{key.name}</div><ul>{groupItems}</ul></div>); //key={"ul" + key}
 }
 
 function PhotosByTags({groups}) {
