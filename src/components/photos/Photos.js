@@ -55,11 +55,12 @@ export default function Photos({photos, tagsToPhotos, onTagging}) {
     let groups = groupBy(photos, (photo) => photo.tagged.toString());
     setUnTagged( groups.get('false') || []);
     // setTagged( groups.get('true') || []);
+    console.log("photos useeffect", groups.get('false'));
   }, [photos]);
 
   useEffect(() => {
     let groupsByTags = groupBy(tagsToPhotos, (ttp) => ttp.tag, (item) => item.photo);
-    console.log("groups by tag", groupsByTags, "tagstophotos" ,tagsToPhotos);
+    // console.log("groups by tag", groupsByTags, "tagstophotos" ,tagsToPhotos);
     setTagged(groupsByTags);
   }, [tagsToPhotos]);
 

@@ -24,6 +24,28 @@ function App() {
 
     let removettp = tagsToPhotos.filter(obj => obj.tag === item);
     let newttp = tagsToPhotos.filter(obj => obj.tag !== item);
+    let untaggedPhotos = [];
+    for (const rttp of removettp) {
+      if (!newttp.some(tp => tp.photo.id === rttp.photo.id)) {
+        rttp.photo.tagged = false;
+        untaggedPhotos.push(rttp.photo);
+      }
+    }
+
+    console.log("untagged photos", untaggedPhotos);
+
+    if (untaggedPhotos.length > 0) {
+      let newPhotos = photos.map(photo => {
+        let p = untaggedPhotos.find(p => p.id === photo.id);
+        console.log("p=", p);
+        if (p) return p;
+        else return photo;
+      });
+
+      console.log(untaggedPhotos, newPhotos);
+      setPhotos(newPhotos);
+    }
+
 
     setTagsToPhotos(newttp);
   }
@@ -33,7 +55,7 @@ function App() {
   }
 
   function handleAttachTags(items){
-    console.log("Attaching tags ",  items, selectPhoto);
+    // console.log("Attaching tags ",  items, selectPhoto);
 
     const photoId = selectPhoto.id;
     let index = photos.findIndex(p => p.id === photoId);
@@ -43,7 +65,7 @@ function App() {
       setPhotos([...photos.slice(0, index), photo, ...photos.slice(index + 1)]);
 
       let ttp = items.map(tagId => {
-        let tag = tags.find(t => t.id == tagId);
+        let tag = tags.find(t => t.id === parseInt(tagId));
         // console.log(tag, tagId,tags);
         return {photo, tag};
       });
@@ -58,7 +80,6 @@ function App() {
   function handleTagging(e, item) {
     let {offsetTop, offsetLeft, offsetHeight, offsetWidth} = e.target;
 
-    // console.log({offsetTop, offsetLeft, offsetHeight, offsetWidth} );
     if (selectPosition == null) {
       setSelectPosition({ offsetTop, offsetLeft, offsetHeight, offsetWidth });
     } else {
