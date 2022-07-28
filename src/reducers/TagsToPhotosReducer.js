@@ -1,24 +1,25 @@
 export const initialState = {
   tagsToPhotos: [],
-  tag: [],
+  tags: [],
   photos: []
 };
 
 export default function TagsToPhotosReducer(state, action) {
   const {tags, tagsToPhotos, photos} = state;
   switch (action.type) {
-    case 'get-photos':
+    case 'set-photos':
         const {payload} = action;
-        return payload.map(d => Object.assign({}, d, {tagged: false}));
+        return { ...state, photos: payload.map(d => Object.assign({}, d, {tagged: false}))};
+
     case 'add-tag':
-      return { tags: [...tags,action.item]};
+      return { ...state, tags: [...tags, action.item]};
 
     case 'delete-tag':
       const {item} = action;
-      let newState = {};
+      let newState = state;
 
       const i = tags.indexOf(item);
-      newState = {tags: ([...tags.slice(0, i), ...tags.slice(i+1)])};
+      newState = {...newState, tags: ([...tags.slice(0, i), ...tags.slice(i+1)])};
 
       let unTagTtp = tagsToPhotos.filter(obj => obj.tag === item);
       let keepTagTtp = tagsToPhotos.filter(obj => obj.tag !== item);
@@ -36,10 +37,10 @@ export default function TagsToPhotosReducer(state, action) {
           return (p) ?  p : photo;
         });
 
-        newState = {...newState, ...{photos: newPhotos}};
+        newState = {...newState, photos: newPhotos};
       }
 
-      newState = {...newState, ...{tagsToPhotos: keepTagTtp}};
+      newState = {...newState, tagsToPhotos: keepTagTtp};
       return newState;
 
     case 'attach-tag':
@@ -56,6 +57,7 @@ export default function TagsToPhotosReducer(state, action) {
         });
 
         return {
+          ...state,
           tagsToPhotos: ([...tagsToPhotos, ...ttp]) ,
           photos: ([...photos.slice(0, index), photo, ...photos.slice(index + 1)])
         };
