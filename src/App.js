@@ -61,7 +61,7 @@ function App() {
         const tag = tags.find(t => t.id === parseInt(tagId));
         return {photo, tag};
       });
-
+      console.log([...tagsToPhotos, ...ttp]);
       setTagsToPhotos([...tagsToPhotos, ...ttp]);
     }
     setSelectPosition(null);
