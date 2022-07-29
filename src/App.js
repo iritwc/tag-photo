@@ -14,7 +14,6 @@ function App() {
 
   const [state, dispatch] = useReducer(TagsToPhotosReducer, initialState);
   const {tags, photos, tagsToPhotos} = state;
-  console.log("app tags=", state);
 
   const [selectPosition, setSelectPosition] = useState(null);
   const [selectPhoto, setSelectPhoto] = useState(null);
