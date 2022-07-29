@@ -41,7 +41,6 @@ export default function Tags({tags, onAdd, onDelete, }) {
   return (
 
     <div className='tags'>
-      {/*<TagSelect tags={tags} onApply={handleSelect} />*/}
       <input type="text" onChange={handleChange} value={tag} />
       <button onClick={handleSave}>Save</button>
       <TagsList items={tags} handleClick={handleDelete} />
