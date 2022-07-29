@@ -15,11 +15,11 @@ function groupBy(array, callbackFn, callbackItem=(item)=>item) {
   return groups;
 }
 
-function PhotosList({items, onTagging}) {
+function PhotosList({items, onTagging, disabled}) {
   const listItems = items.slice(0,10).map((item) =>
     <li key={item.id} >
       <img src={item.download_url} alt={item.author} ></img>
-      <button onClick={(e) => onTagging(e, item)}>A</button>
+      <button disabled={disabled} onClick={(e) => onTagging(e, item)}></button>
     </li>
   );
   return (
@@ -46,7 +46,7 @@ function PhotosByTags({groups}) {
   return (<div>{pbt.map(pt => pt)}</div>);
 }
 
-export default function Photos({photos, tagsToPhotos, onTagging}) {
+export default function Photos({photos, tagsToPhotos, onTagging, disableTagging}) {
 
   const [tagged, setTagged] = useState([]);
   const [unTagged, setUnTagged] = useState([]);
@@ -66,7 +66,7 @@ export default function Photos({photos, tagsToPhotos, onTagging}) {
     <div className={'photos'}>
       <section className="untagged">
         <label htmlFor="untaggedList">Not tagged</label>
-        <PhotosList id={"untaggedList"} items={unTagged} onTagging={onTagging} />
+        <PhotosList id={"untaggedList"} items={unTagged} onTagging={onTagging} disabled={disableTagging} />
       </section>
       <section className="tagged">
         <label htmlFor="taggedList">Tagged</label>

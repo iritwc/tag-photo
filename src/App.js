@@ -17,6 +17,7 @@ function App() {
 
   const [selectPosition, setSelectPosition] = useState(null);
   const [selectPhoto, setSelectPhoto] = useState(null);
+  const [disableTagging, setDisableTagging ] = useState(true);
 
   function handleDeleteTag(item) {
     dispatch({type:'delete-tag', item});
@@ -48,6 +49,11 @@ function App() {
   }
 
   useEffect(() => {
+    console.log(disableTagging);
+    setDisableTagging(state.tags.length === 0);
+  }, [state.tags]);
+
+  useEffect(() => {
     try {
       const fetchPhotos = async () => {
           const data = await getPhotos();
@@ -64,7 +70,7 @@ function App() {
     <div className="App">
       <TagSelect position={selectPosition} tags={tags} onApply={handleAttachTags} />
       <Tags tags={tags} onAdd={handleAddTag} onDelete={handleDeleteTag} />
-      <Photos photos={photos} tagsToPhotos={tagsToPhotos} onTagging={handleTagging} />
+      <Photos photos={photos} tagsToPhotos={tagsToPhotos} disableTagging={disableTagging} onTagging={handleTagging} />
     </div>
   );
 }

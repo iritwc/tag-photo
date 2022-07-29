@@ -18,19 +18,27 @@
 }
 
 .photos .tagged img, .photos .untagged img {
-
     width: 80px;
     height: 80px;
 }
 
 .photos .untagged ul li {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
 }
 
 
 .photos .untagged ul li button {
-    margin-left: -25px;
+    background: url("../../resources/tag_icon.png") no-repeat;
+    width: 24px;
+    height: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.photos .untagged ul li button:disabled {
+    background-color: lightgrey;
+    border-radius: 3px;
 }
 
 .photos .tagged > div {
