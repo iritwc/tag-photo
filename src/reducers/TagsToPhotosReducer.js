@@ -5,7 +5,11 @@ export const initialState = {
 };
 
 export default function TagsToPhotosReducer(state, action) {
+
   const {tags, tagsToPhotos, photos} = state;
+  const {photoId, tagIds, tagId} = action;
+  let newState = state;
+
   switch (action.type) {
     case 'set-photos':
         const {payload} = action;
@@ -16,16 +20,15 @@ export default function TagsToPhotosReducer(state, action) {
 
     case 'delete-tag':
       const {item} = action;
-      let newState = state;
 
       const i = tags.indexOf(item);
       newState = {...newState, tags: ([...tags.slice(0, i), ...tags.slice(i+1)])};
 
-      let unTagTtp = tagsToPhotos.filter(obj => obj.tag === item);
-      let keepTagTtp = tagsToPhotos.filter(obj => obj.tag !== item);
+      let discardTtp = tagsToPhotos.filter(obj => obj.tag === item);
+      let keepTtp = tagsToPhotos.filter(obj => obj.tag !== item);
       let untaggedPhotos = [];
-      for (const ttp of unTagTtp) {
-        if (!keepTagTtp.some(tp => tp.photo.id === ttp.photo.id)) {
+      for (const ttp of discardTtp) {
+        if (!keepTtp.some(tp => tp.photo.id === ttp.photo.id)) {
           ttp.photo.tagged = false;
           untaggedPhotos.push(ttp.photo);
         }
@@ -40,11 +43,10 @@ export default function TagsToPhotosReducer(state, action) {
         newState = {...newState, photos: newPhotos};
       }
 
-      newState = {...newState, tagsToPhotos: keepTagTtp};
+      newState = {...newState, tagsToPhotos: keepTtp};
       return newState;
 
     case 'attach-tags':
-      const {tagIds, photoId} = action;
 
       let index = photos.findIndex(p => p.id === photoId);
       if (index > -1) {
@@ -62,6 +64,29 @@ export default function TagsToPhotosReducer(state, action) {
           photos: ([...photos.slice(0, index), photo, ...photos.slice(index + 1)])
         };
       }
+      return state;
+
+    case 'un-tag-photo':
+
+      const indie = tagsToPhotos.findIndex(ttp => ttp.photo.id===photoId && tagId === ttp.tag.id);
+      newState = state;
+      if (indie > -1) {
+        let keepTtp = [...tagsToPhotos.slice(0,indie), ...tagsToPhotos.slice(indie+1)];
+        if (!keepTtp.some(tp => tp.photo.id === photoId)) {
+          let index = photos.findIndex(p => p.id === photoId);
+          if (index > -1) {
+            const photo = photos[index];
+            photo.tagged = false;
+
+            newState = {
+              ...newState,
+              photos: ([...photos.slice(0, index), photo, ...photos.slice(index + 1)])
+            };
+          }
+        }
+        return {...newState, tagsToPhotos: keepTtp};
+      }
+
       return state;
 
     default:

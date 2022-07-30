@@ -69,7 +69,7 @@ function App() {
     <div className="App">
       <TagSelect position={selectPosition} tags={tags} onApply={handleAttachTags} />
       <Tags tags={tags} onAdd={handleAddTag} onDelete={handleDeleteTag} />
-      <Photos photos={photos} tagsToPhotos={tagsToPhotos} disableTagging={disableTagging} onTagging={handleTagging} />
+      <Photos dispatch={dispatch} photos={photos} tagsToPhotos={tagsToPhotos} disableTagging={disableTagging} onTagging={handleTagging} />
     </div>
   );
 }

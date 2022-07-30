@@ -13,7 +13,6 @@
     display: flex;
     flex-wrap: wrap;
     column-gap: 1em;
-    row-gap: 1em;
     margin: 1em auto;
 }
 
@@ -22,18 +21,28 @@
     height: 80px;
 }
 
-.photos .untagged ul li {
+.photos ul li {
     display: flex;
     flex-direction: column;
 }
 
+.photos .tagged ul li{
+    grid-row-gap: 2px;
+}
 
-.photos .untagged ul li button {
-    background: url("../../resources/tag_icon_16.png") no-repeat;
+.photos ul li button {
     width: 16px;
     height: 16px;
     border: none;
     cursor: pointer;
+}
+
+.photos .untagged ul li button {
+    background: url("../../resources/tag_icon_16.png") no-repeat;
+}
+
+.photos .tagged ul li button {
+    background: url("../../resources/delete.png") no-repeat;
 }
 
 .photos .untagged ul li button:disabled {
@@ -69,6 +78,11 @@
 
     .photos .untagged ul li button {
         background: url("../../resources/tag_icon_20.png") no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+
+    .photos .tagged ul li button {
         width: 20px;
         height: 20px;
     }
