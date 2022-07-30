@@ -30,7 +30,6 @@ function PhotosList({items, onTagging, disabled}) {
 function PhotosByTag({value, key, dispatch}) {
 
   function handleClick({item}) {
-    console.log(item, key, dispatch);
     dispatch({type:'un-tag-photo', photoId: item.id, tagId: key.id});
   }
 
@@ -41,7 +40,6 @@ function PhotosByTag({value, key, dispatch}) {
     </li>
   );
   return (<div key={"div" + key.id} className={"tag-group"}><div className={key.color+ " title"}>{key.name}</div><ul>{groupItems}</ul></div>);
-
 }
 
 function PhotosByTags({groups, dispatch}) {
@@ -60,7 +58,7 @@ export default function Photos({photos, tagsToPhotos, dispatch, onTagging, disab
 
   useEffect(() => {
     let groups = groupBy(photos, (photo) => photo.tagged.toString());
-    setUnTagged( groups.get('false') || []);
+    setUnTagged(groups.get('false') || []);
   }, [photos]);
 
   useEffect(() => {
