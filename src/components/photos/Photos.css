@@ -29,9 +29,9 @@
 
 
 .photos .untagged ul li button {
-    background: url("../../resources/tag_icon.png") no-repeat;
-    width: 24px;
-    height: 24px;
+    background: url("../../resources/tag_icon_16.png") no-repeat;
+    width: 16px;
+    height: 16px;
     border: none;
     cursor: pointer;
 }
@@ -65,6 +65,12 @@
     .photos .untagged img {
         width: 120px;
         height: 120px;
+    }
+
+    .photos .untagged ul li button {
+        background: url("../../resources/tag_icon_20.png") no-repeat;
+        width: 20px;
+        height: 20px;
     }
 
 }
