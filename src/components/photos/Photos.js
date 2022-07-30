@@ -16,7 +16,7 @@ function groupBy(array, callbackFn, callbackItem=(item)=>item) {
 }
 
 function PhotosList({items, onTagging, disabled}) {
-  const listItems = items.slice(0,10).map((item) =>
+  const listItems = items.slice(0,20).map((item) =>
     <li key={item.id} >
       <img src={item.download_url} alt={item.author} ></img>
       <button disabled={disabled} onClick={(e) => onTagging(e, item)}></button>

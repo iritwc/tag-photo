@@ -43,7 +43,7 @@ export default function TagsToPhotosReducer(state, action) {
       newState = {...newState, tagsToPhotos: keepTagTtp};
       return newState;
 
-    case 'attach-tag':
+    case 'attach-tags':
       const {tagIds, photoId} = action;
 
       let index = photos.findIndex(p => p.id === photoId);

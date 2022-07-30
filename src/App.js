@@ -31,7 +31,7 @@ function App() {
 
     if (tagIds.length > 0) {
       const photoId = selectPhoto.id;
-      dispatch({type: 'attach-tag', tagIds, photoId});
+      dispatch({type: 'attach-tags', tagIds, photoId});
     }
     setSelectPosition(null);
     setSelectPhoto(null);
@@ -49,7 +49,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(disableTagging);
     setDisableTagging(state.tags.length === 0);
   }, [state.tags]);
 

@@ -40,7 +40,7 @@ export default function TagSelect({tags, onApply, position=null}) {
 
   return (
     <div ref={selectTag} className={"tags-select-wrapper" + ((position===null) ? " hide":"") }>
-      <select multiple={true} value={selects} onSelect={() => {console.log("onselect");}} onChange={handleSelect}>{listItems}</select>
+      <select multiple={true} value={selects} onChange={handleSelect}>{listItems}</select>
       <button onClick={handleApply}>Apply</button>
     </div>
   );
