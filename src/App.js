@@ -5,10 +5,8 @@ import Photos from './components/photos/Photos.js';
 import TagSelect from './components/tags/TagSelect.js';
 import TagsToPhotosReducer, {initialState} from './reducers/TagsToPhotosReducer.js';
 
-function getPhotos() {
-  return fetch(`https://picsum.photos/v2/list`);
-}
-
+  
+const PICSUM_URL = `https://picsum.photos/v2/list`;
 
 function App() {
 
@@ -56,7 +54,7 @@ function App() {
 
       const fetchPhotos = async () => {
         try {
-          let response = await getPhotos().then(response => response.json());
+          let response = await fetch(PICSUM_URL).then(response => response.json());
           return response;
         }
         catch (e) {
