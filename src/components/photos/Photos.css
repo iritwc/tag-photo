@@ -42,7 +42,7 @@
 }
 
 .photos .tagged ul li button {
-    background: url("../../resources/delete.png") no-repeat;
+    background: url("../../resources/price-tag.png") no-repeat;
 }
 
 .photos .untagged ul li button:disabled {
