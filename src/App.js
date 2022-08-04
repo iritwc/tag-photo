@@ -6,7 +6,7 @@ import TagSelect from './components/tags/TagSelect.js';
 import TagsToPhotosReducer, {initialState} from './reducers/TagsToPhotosReducer.js';
 
 function getPhotos() {
-  return fetch(`https://picsum.photos/v2/list`).then(response => response.json());
+  return fetch(`https://picsum.photos/v2/list`);
 }
 
 
@@ -53,16 +53,17 @@ function App() {
   }, [state.tags]);
 
   useEffect(() => {
-    try {
-      const fetchPhotos = async () => {
-          const data = await getPhotos();
-          return data;
 
+      const fetchPhotos = async () => {
+        try {
+          let response = await getPhotos().then(response => response.json());
+          return response;
+        }
+        catch (e) {
+          console.log("Error fetch photos", e);
+       }
       };
-      fetchPhotos().then(data=> dispatch({type:'set-photos', payload: data}));
-    } catch (e) {
-      console.log("Error fetch photos", e);
-    }
+      fetchPhotos().then(data => dispatch({type:'set-photos', payload: data}));
   }, []);
 
   return (
