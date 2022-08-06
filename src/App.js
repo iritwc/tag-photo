@@ -4,9 +4,20 @@ import Tags from './components/tags/Tags.js';
 import Photos from './components/photos/Photos.js';
 import TagSelect from './components/tags/TagSelect.js';
 import TagsToPhotosReducer, {initialState} from './reducers/TagsToPhotosReducer.js';
+import appLocalStorage from './services/LocalStorage.js';
 
-  
+
 const PICSUM_URL = `https://picsum.photos/v2/list`;
+
+async function fetchPhotos (){
+  try {
+    const response = await fetch(PICSUM_URL);
+    return response.json();
+  }
+  catch (e) {
+    console.log("Error fetch photos", e);
+  }
+};
 
 function App() {
 
@@ -52,16 +63,10 @@ function App() {
 
   useEffect(() => {
 
-      const fetchPhotos = async () => {
-        try {
-          let response = await fetch(PICSUM_URL).then(response => response.json());
-          return response;
-        }
-        catch (e) {
-          console.log("Error fetch photos", e);
-       }
-      };
-      fetchPhotos().then(data => dispatch({type:'set-photos', payload: data}));
+    fetchPhotos().then(photos => {
+      dispatch({type:'set-photos', payload: photos});
+      console.log("Photos loaded!");
+    });
   }, []);
 
   return (
